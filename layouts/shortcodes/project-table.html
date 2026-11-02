@@ -1,0 +1,14 @@
+{{- /* 프로젝트 목록 표. content/projects의 front matter에서 만든다. */ -}}
+<table>
+  <thead><tr><th>프로젝트</th><th>기간</th><th>기술</th><th>규모</th></tr></thead>
+  <tbody>
+  {{ range (where site.RegularPages "Section" "projects").ByWeight }}
+    <tr>
+      <td><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><span class="muted">{{ .Params.summary }}</span></td>
+      <td>{{ .Params.period }}</td>
+      <td>{{ with .Params.stackDetail }}{{ . }}{{ else }}{{ delimit .Params.stack ", " }}{{ end }}</td>
+      <td>{{ .Params.scale }}</td>
+    </tr>
+  {{ end }}
+  </tbody>
+</table>

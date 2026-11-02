@@ -1,0 +1,6 @@
+{{- /* data/skills.yaml의 핵심 역량과 근거 프로젝트 */ -}}
+<ul class="skill-list">
+  {{ range hugo.Data.skills }}
+  <li><b>{{ .title }}</b>: {{ delimit .items ", " }}. <span class="muted">근거: {{ range $i, $slug := .from }}{{ if $i }} · {{ end }}{{ with site.GetPage (printf "/projects/%s" $slug) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ end }}{{ end }}</span></li>
+  {{ end }}
+</ul>

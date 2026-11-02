@@ -1,0 +1,32 @@
+# 수치는 reference/build-log.html에서 옮긴다. 모든 수치에 측정일을 붙인다.
+
+# 히어로 아래 검정 띠
+headline:
+  - value: "778"
+    label: 직접 실행해 통과한 테스트
+    measuredAt: 2026-11-02
+  - value: "8"
+    label: 풀스택·AI 프로젝트
+    measuredAt: 2026-11-02
+  - value: "9"
+    label: AI가 놓친 문제 분석 사례
+    measuredAt: 2026-11-02
+  - value: "6"
+    label: AI 개발 승인 게이트
+    measuredAt: 2026-11-02
+
+# 프로젝트별 통과 테스트. 단위·화면 테스트 기준이며 E2E는 제외.
+tests:
+  command: npm test
+  measuredAt: 2026-11-02
+  note: 2026년 11월 2일 실행. 단위·화면 테스트 기준이며 E2E는 제외했습니다.
+  projects:
+    - name: 사회자 퇴근
+      slug: hostoff
+      passed: 395
+    - name: 여정
+      slug: yeojeong
+      passed: 299
+    - name: 잔흔
+      slug: aftermark
+      passed: 84

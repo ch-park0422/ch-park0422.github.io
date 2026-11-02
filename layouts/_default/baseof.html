@@ -1,0 +1,17 @@
+<!doctype html>
+<html lang="ko">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<a class="skip" href="#main">본문으로 건너뛰기</a>
+{{ partial "header.html" . }}
+<div class="wrap">
+{{ block "main" . }}{{ end }}
+</div>
+{{ partial "footer.html" . }}
+{{ if and (eq .Section "projects") .IsSection }}
+{{ with resources.Get "js/main.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>{{ end }}
+{{ end }}
+</body>
+</html>

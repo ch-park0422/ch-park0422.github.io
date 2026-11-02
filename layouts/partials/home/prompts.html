@@ -1,0 +1,10 @@
+{{ $p := hugo.Data.prompts }}
+<section id="prompts" class="band">
+  <div class="head"><h2>프롬프트 엔지니어링</h2><p>{{ $p.intro }}</p></div>
+  <div class="prompts">
+    {{ range $p.items }}
+    <div class="prompt"><h3>{{ .title }}</h3><q>{{ .quote }}</q><p>{{ .why }}</p></div>
+    {{ end }}
+  </div>
+  <p class="source">{{ $p.source }}</p>
+</section>

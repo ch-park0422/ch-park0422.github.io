@@ -1,0 +1,9 @@
+{{ define "main" }}
+<main id="main" class="listing">
+  <div class="list-head">
+    <a class="back" href="{{ "/blog/" | relURL }}">← 글 목록</a>
+    <h1>#{{ .Title }}</h1>
+  </div>
+  {{ partial "post-rows.html" .Pages.ByDate.Reverse }}
+</main>
+{{ end }}

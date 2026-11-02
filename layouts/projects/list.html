@@ -1,0 +1,32 @@
+{{ define "main" }}
+{{ $projects := .Pages.ByWeight }}
+{{- /* 두 개 이상의 프로젝트에서 쓴 기술만 필터로 보여준다. */ -}}
+{{ $count := dict }}
+{{ range $projects }}{{ range .Params.stack }}{{ $count = merge $count (dict . (add (index $count . | default 0) 1)) }}{{ end }}{{ end }}
+{{ $techs := slice }}
+{{ range $tech, $n := $count }}{{ if ge $n 2 }}{{ $techs = $techs | append $tech }}{{ end }}{{ end }}
+<main id="main" class="listing">
+  <div class="list-head">
+    <p class="eyebrow">PROJECTS</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+  </div>
+  <div class="filters" data-filter hidden>
+    <span id="filter-label">기술로 거르기</span>
+    <div role="group" aria-labelledby="filter-label">
+      <button type="button" class="chip" data-tech="" aria-pressed="true">전체</button>
+      {{ range sort $techs }}<button type="button" class="chip" data-tech="{{ . }}" aria-pressed="false">{{ . }}</button>{{ end }}
+    </div>
+    <p class="muted" aria-live="polite" data-filter-status></p>
+  </div>
+  <div class="rows cards">
+    {{ range $projects }}
+    <a class="rowlink card" href="{{ .RelPermalink }}" data-stack="{{ delimit .Params.stack "|" }}">
+      <b>{{ .Title }}</b>
+      <span>{{ .Params.summary }}<small>{{ .Params.period }}{{ with .Params.status }} · {{ . }}{{ end }} · {{ delimit .Params.stack " · " }}</small></span>
+      <i aria-hidden="true">↗</i>
+    </a>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

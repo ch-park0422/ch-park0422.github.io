@@ -1,0 +1,15 @@
+{{ define "main" }}
+<main id="main" class="listing">
+  <div class="list-head">
+    <p class="eyebrow">BLOG</p>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+  </div>
+  {{ with site.Taxonomies.tags }}
+  <nav class="filters" aria-label="태그">
+    <div>{{ range .ByCount }}<a class="chip" href="{{ .Page.RelPermalink }}">#{{ .Page.LinkTitle }} <span class="muted">{{ .Count }}</span></a>{{ end }}</div>
+  </nav>
+  {{ end }}
+  {{ partial "post-rows.html" .Pages.ByDate.Reverse }}
+</main>
+{{ end }}

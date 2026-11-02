@@ -1,0 +1,6 @@
+{{- /* data/career.yaml의 교육 */ -}}
+<ul>
+  {{ range hugo.Data.career.education }}
+  <li><b>{{ .school }}</b>{{ with .detail }} · {{ . }}{{ end }}{{ with .thesis }}<br>논문: {{ . }}{{ end }}</li>
+  {{ end }}
+</ul>

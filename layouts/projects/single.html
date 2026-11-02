@@ -1,0 +1,36 @@
+{{ define "main" }}
+{{ $projects := (where site.RegularPages "Section" "projects").ByWeight }}
+{{ $prev := false }}{{ $next := false }}
+{{ range $i, $p := $projects }}
+  {{ if eq $p $ }}
+    {{ if gt $i 0 }}{{ $prev = index $projects (sub $i 1) }}{{ end }}
+    {{ if lt (add $i 1) (len $projects) }}{{ $next = index $projects (add $i 1) }}{{ end }}
+  {{ end }}
+{{ end }}
+{{ range .Params.metrics }}{{ if not .measuredAt }}{{ errorf "%s: 수치 %q에 measuredAt이 없습니다" $.File.Path .label }}{{ end }}{{ end }}
+<main id="main">
+<article>
+  <a class="back" href="{{ "/projects/" | relURL }}">← 프로젝트 목록</a>
+  <div class="post-head">
+    <span class="mono muted">{{ .Params.period }}</span>
+    <h1>{{ .Title }}</h1>
+    <p>{{ .Params.summary }}</p>
+  </div>
+  <dl class="meta">
+    {{ with .Params.role }}<dt>역할</dt><dd>{{ . }}</dd>{{ end }}
+    <dt>스택</dt><dd>{{ with .Params.stackDetail }}{{ . }}{{ else }}{{ delimit .Params.stack ", " }}{{ end }}</dd>
+    {{ with .Params.scale }}<dt>규모</dt><dd>{{ . }}</dd>{{ end }}
+    {{ with .Params.status }}<dt>상태</dt><dd>{{ . }}{{ with $.Params.state }} · {{ . }}{{ end }}</dd>{{ end }}
+    <dt>저장소</dt><dd>{{ with .Params.repo }}<a href="{{ . }}">{{ strings.TrimPrefix "https://github.com/" . }}</a>{{ else }}비공개{{ end }}</dd>
+    {{ with .Params.demo }}<dt>데모</dt><dd><a href="{{ . }}">{{ . }}</a></dd>{{ end }}
+  </dl>
+  <div class="body">
+    {{ .Content }}
+  </div>
+  <nav class="pager" aria-label="다른 프로젝트">
+    {{ with $prev }}<a href="{{ .RelPermalink }}" rel="prev">← {{ .Title }}</a>{{ end }}
+    {{ with $next }}<a href="{{ .RelPermalink }}" rel="next">{{ .Title }} →</a>{{ end }}
+  </nav>
+</article>
+</main>
+{{ end }}

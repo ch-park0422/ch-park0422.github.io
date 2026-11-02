@@ -1,0 +1,20 @@
+{{ $tests := hugo.Data.figures.tests }}
+{{ $max := 0 }}
+{{ range $tests.projects }}{{ $max = math.Max $max .passed }}{{ end }}
+<section id="about" class="about">
+  <div>
+    <p class="eyebrow">ABOUT ME</p>
+    <h2>AI의 결과를 믿기 전에<br>확인합니다</h2>
+    <div class="copy">
+      <p>AI는 구현을 크게 넓혀 주지만, 잘못된 전제까지 빠르게 코드로 만듭니다. 그래서 작업 전에 명세와 금지 사항을 정하고, 작업 뒤에는 테스트와 실제 사용으로 결과를 확인합니다.</p>
+      <p>놓친 문제가 나오면 고치는 데서 끝내지 않습니다. 테스트와 프로젝트 규칙으로 남겨 같은 실수가 반복되지 않게 합니다.</p>
+    </div>
+  </div>
+  <div class="bars">
+    <h3>프로젝트별 통과 테스트</h3>
+    {{ range $tests.projects }}
+    <div class="barrow"><div><span>{{ .name }}</span><span>{{ .passed }}</span></div><i><em style="width:{{ div (math.Round (mul (div (float .passed) $max) 1000)) 10 }}%"></em></i></div>
+    {{ end }}
+    <small>{{ $tests.note }}</small>
+  </div>
+</section>

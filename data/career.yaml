@@ -1,0 +1,23 @@
+# 경력과 교육. 작성자가 2026-11-02에 알려 준 내용이다.
+jobs:
+  - company: KT
+    title: QAPM
+    period: 2025.04 – 재직 중
+    work: 마이케이티, 토큰팩토리 등 KT의 AI Platform 전환 서비스 품질 검증
+  - company: Wemade
+    title: QA Engineer
+    period: 2023.09 – 2025.03
+    work: 위퍼블릭(블록체인 기반 커뮤니티 앱) 서비스 품질 검증
+  - company: Streami
+    title: QA Engineer
+    period: 2022.08 – 2023.09
+    work: 고팍스(가상화폐 거래소) 서비스 품질 검증 및 자동화 테스트 구축
+  - company: Ngle
+    title: QA Engineer
+    period: 2017.01 – 2022.07
+    work: QA 전문 외주 업체에서 웹, 앱, 플랫폼, 게임 등 다양한 도메인의 품질 검증 및 성능 테스트
+
+education:
+  - school: 한양대학교 공학대학원
+    detail: 학점 3.54/4.5
+    thesis: Yolov8과 OCR을 결합한 소프트웨어 테스트 자동화

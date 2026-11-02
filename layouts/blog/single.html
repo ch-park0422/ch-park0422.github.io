@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{- /* 이전 글은 더 오래된 글, 다음 글은 더 최근 글이다. */ -}}
+{{ $posts := (where site.RegularPages "Section" "blog").ByDate }}
+{{ $prev := false }}{{ $next := false }}
+{{ range $i, $p := $posts }}
+  {{ if eq $p $ }}
+    {{ if gt $i 0 }}{{ $prev = index $posts (sub $i 1) }}{{ end }}
+    {{ if lt (add $i 1) (len $posts) }}{{ $next = index $posts (add $i 1) }}{{ end }}
+  {{ end }}
+{{ end }}
+<main id="main">
+<article>
+  <a class="back" href="{{ "/blog/" | relURL }}">← 글 목록</a>
+  <div class="post-head">
+    <span class="mono muted"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "2006.01.02" }}</time> · {{ .ReadingTime }}분 읽기</span>
+    <h1>{{ .Title }}</h1>
+    {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
+    {{ with .GetTerms "tags" }}<p class="tags">{{ range . }}<a href="{{ .RelPermalink }}">#{{ .LinkTitle }}</a>{{ end }}</p>{{ end }}
+  </div>
+  <div class="body prose">
+    {{ .Content }}
+  </div>
+  <nav class="pager" aria-label="다른 글">
+    {{ with $prev }}<a href="{{ .RelPermalink }}" rel="prev">← {{ .Title }}</a>{{ end }}
+    {{ with $next }}<a href="{{ .RelPermalink }}" rel="next">{{ .Title }} →</a>{{ end }}
+  </nav>
+</article>
+</main>
+{{ end }}

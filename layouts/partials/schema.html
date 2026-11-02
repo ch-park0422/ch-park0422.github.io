@@ -1,0 +1,29 @@
+{{- /* 구조화 데이터. 홈과 소개는 Person, 글은 BlogPosting. */ -}}
+{{- $person := dict
+  "@type" "Person"
+  "@id" (printf "%s#person" site.Home.Permalink)
+  "name" site.Params.author
+  "url" site.Home.Permalink
+  "image" (site.Params.image | absURL)
+  "jobTitle" "AI 풀스택 개발자"
+  "sameAs" (slice site.Params.github)
+-}}
+{{- if or .IsHome (eq .RelPermalink "/about/") }}
+<script type="application/ld+json">{{ merge (dict "@context" "https://schema.org") $person | jsonify | safeJS }}</script>
+{{- else if and .IsPage (eq .Section "blog") }}
+{{- $post := dict
+  "@context" "https://schema.org"
+  "@type" "BlogPosting"
+  "headline" .Title
+  "description" (.Params.summary | plainify)
+  "url" .Permalink
+  "mainEntityOfPage" .Permalink
+  "datePublished" (.Date.Format "2006-01-02T15:04:05Z07:00")
+  "dateModified" (.Lastmod.Format "2006-01-02T15:04:05Z07:00")
+  "inLanguage" "ko-KR"
+  "keywords" (delimit (.Params.tags | default slice) ", ")
+  "image" ((.Params.image | default site.Params.ogImage) | absURL)
+  "author" $person
+-}}
+<script type="application/ld+json">{{ $post | jsonify | safeJS }}</script>
+{{- end }}

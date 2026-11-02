@@ -1,0 +1,12 @@
+{{- /* 글 목록. 입력: 페이지 모음 */ -}}
+<div class="rows cards">
+  {{ range . }}
+  <a class="rowlink card" href="{{ .RelPermalink }}">
+    <b>{{ .Title }}</b>
+    <span>{{ .Params.summary }}<small>{{ .Date.Format "2006.01.02" }} · {{ .ReadingTime }}분{{ range .Params.tags }} · #{{ . }}{{ end }}</small></span>
+    <i aria-hidden="true">↗</i>
+  </a>
+  {{ else }}
+  <p class="muted empty">아직 글이 없습니다.</p>
+  {{ end }}
+</div>

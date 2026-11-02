@@ -1,0 +1,13 @@
+<section id="catches">
+  <div class="head"><h2>AI가 놓친 문제</h2><p>실제 기록에 남은 사례입니다. 왼쪽은 문제가 드러난 경로입니다.</p></div>
+  <div class="table">
+    {{ range hugo.Data.catches }}
+    <div class="miss">
+      <span class="tag">{{ .route }}</span>
+      <div><small>문제</small>{{ .problem }}</div>
+      <div><small>원인</small>{{ .cause }}</div>
+      <div><small>재발 방지</small>{{ .prevention }}</div>
+    </div>
+    {{ end }}
+  </div>
+</section>

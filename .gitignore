@@ -1,0 +1,24 @@
+# 원본 자료와 미승인 초안. 공개 저장소에 올리지 않는다.
+reference/
+
+# 비밀값
+.env*
+
+# Hugo 빌드 결과
+public/
+resources/
+.hugo_build.lock
+
+# 테스트 결과
+tests/output/
+node_modules/
+playwright-report/
+test-results/
+
+# OS
+.DS_Store
+__pycache__/
+
+# 테스트용 빌드와 결과
+tests/.site/
+tests/output/

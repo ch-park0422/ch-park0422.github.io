@@ -1,0 +1,2 @@
+{{- /* 문제와 해결 한 줄. 사용: {{< fix problem="문제" >}}해결{{< /fix >}} */ -}}
+<div class="fix"><div><span>{{ .Get "problem" }}</span><span>{{ .Inner | .Page.RenderString }}</span></div></div>

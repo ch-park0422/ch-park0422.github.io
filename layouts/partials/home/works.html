@@ -1,0 +1,14 @@
+{{ $projects := (where site.RegularPages "Section" "projects").ByWeight }}
+<section id="works">
+  <div class="head"><h2>SELECTED WORK</h2></div>
+  <div class="tiles">
+    {{ range where $projects "Params.featured" true }}
+    <a class="tile {{ .Params.tile.style }}" href="{{ .RelPermalink }}"><h3>{{ delimit .Params.tile.lines "<br>" | safeHTML }}</h3><small>{{ .Params.tile.label }}</small></a>
+    {{ end }}
+  </div>
+  <div class="rows">
+    {{ range where $projects "Params.featured" "!=" true }}
+    <a class="rowlink" href="{{ .RelPermalink }}"><b>{{ .Title }}</b><span>{{ .Params.card }}</span><i aria-hidden="true">↗</i></a>
+    {{ end }}
+  </div>
+</section>

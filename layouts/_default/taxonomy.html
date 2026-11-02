@@ -1,0 +1,15 @@
+{{ define "main" }}
+<main id="main" class="listing">
+  <div class="list-head">
+    <p class="eyebrow">TAGS</p>
+    <h1>태그</h1>
+  </div>
+  <div class="rows cards">
+    {{ range .Data.Terms.ByCount }}
+    <a class="rowlink card" href="{{ .Page.RelPermalink }}"><b>#{{ .Page.LinkTitle }}</b><span>글 {{ .Count }}개</span><i aria-hidden="true">↗</i></a>
+    {{ else }}
+    <p class="muted empty">아직 태그가 없습니다.</p>
+    {{ end }}
+  </div>
+</main>
+{{ end }}

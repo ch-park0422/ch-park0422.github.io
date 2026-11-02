@@ -1,0 +1,49 @@
+# 핵심 역량 6개. from의 slug는 content/projects/의 파일 이름이다.
+# icon은 layouts/partials/icon.html의 이름이다.
+- title: 풀스택 제품 구현
+  icon: screen
+  items:
+    - Next.js 웹 서비스와 Expo 모바일 앱 구현
+    - Fastify, Edge Function, Server Action 기반 서버 로직
+    - PostgreSQL 스키마, 마이그레이션, 파일 저장소 구성
+  from: [yeojeong, hostoff, basketball]
+
+- title: 데이터 정합성과 권한 설계
+  icon: shield
+  items:
+    - 동시 요청 충돌을 트랜잭션 RPC로 해결
+    - 게임 비밀 정보는 서버가 판단하고 RLS로 격리
+    - RLS를 실제 Postgres에 적용해 검증
+  from: [hostoff, yeojeong]
+
+- title: 외부 연동과 장애 대응
+  icon: plug
+  items:
+    - 재시도, 지수 백오프, 대체 데이터 경로 구성
+    - 웹훅 재전송을 중복 제거와 쿨다운으로 차단
+    - 실패 시 가짜 데이터 대신 명확한 상태 표시
+  from: [stock-alam, stock-er]
+
+- title: AI 에이전트 오케스트레이션
+  icon: nodes
+  items:
+    - 8개 직군 서브에이전트와 모델 역할 분담
+    - 6단계 승인 게이트와 문서 기반 의사결정
+    - 훅과 권한 설정으로 위험 작업 제한
+  from: [aftermark, harness]
+
+- title: LLM 제품 기능 개발
+  icon: spark
+  items:
+    - Claude와 Gemini를 서비스 기능에 연동
+    - LLM 없이도 동작하는 규칙 기반 추천 구성
+    - LLM 출력을 가드레일로 검증하고 면책 문구 강제
+  from: [yeojeong, stock-alam, trendspotted]
+
+- title: AI 결과물 검증
+  icon: check
+  items:
+    - 순수 함수 분리로 테스트 가능한 구조 설계
+    - 시드 고정 시뮬레이션으로 게임 밸런스 측정
+    - 검증하지 못한 항목을 보고서에 명시
+  from: [aftermark, hostoff, yeojeong]

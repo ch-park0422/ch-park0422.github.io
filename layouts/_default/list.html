@@ -1,0 +1,13 @@
+{{ define "main" }}
+<main id="main">
+<article>
+  <div class="post-head"><h1>{{ .Title }}</h1>{{ with .Params.summary }}<p>{{ . }}</p>{{ end }}</div>
+  {{ with .Content }}<div class="body">{{ . }}</div>{{ end }}
+  <div class="rows">
+    {{ range .Pages.ByWeight }}
+    <a class="rowlink" href="{{ .RelPermalink }}"><b>{{ .Title }}</b><span>{{ with .Params.card }}{{ . }}{{ else }}{{ .Params.summary }}{{ end }}</span><i aria-hidden="true">↗</i></a>
+    {{ end }}
+  </div>
+</article>
+</main>
+{{ end }}

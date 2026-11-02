@@ -1,0 +1,37 @@
+# Phase 6에서 https://chpark.dev/ 로 바꾼다.
+baseURL = 'https://ch-park0422.github.io/'
+defaultContentLanguage = 'ko'
+locale = 'ko-KR'
+title = 'AI로 구현하고, 검증으로 완성하는 풀스택 개발'
+enableRobotsTXT = true
+enableGitInfo = false
+hasCJKLanguage = true
+
+[params]
+  author = '박창현'
+  description = 'AI 에이전트에게 구현을 맡기고, 제품 판단과 품질 기준은 직접 세우는 풀스택 개발자 박창현의 포트폴리오와 블로그입니다.'
+  github = 'https://github.com/ch-park0422'
+  image = 'images/profile.jpg'
+  ogImage = 'images/og.jpg'
+  builtWith = ['TypeScript', 'Next.js', 'React Native', 'PostgreSQL', 'Supabase', 'Python', 'Claude Code']
+
+[services.rss]
+  limit = 20
+
+[sitemap]
+  changeFreq = 'monthly'
+
+[taxonomies]
+  tag = 'tags'
+
+[permalinks]
+  [permalinks.page]
+    blog = '/blog/:contentbasename/'
+    projects = '/projects/:contentbasename/'
+
+[markup.goldmark.renderer]
+  unsafe = false
+
+[caches]
+  [caches.images]
+    dir = ':cacheDir/images'
