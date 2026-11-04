@@ -70,6 +70,23 @@ class CheckContentTest(unittest.TestCase):
                 check.scan(rel, problems)
                 self.assertTrue(problems)
 
+    def test_private_info_fails_in_site_sources(self):
+        samples = {
+            "name" + "@example.com": "이메일 주소",
+            "010-" + "1234-5678": "전화번호",
+            "3.54" + "/4.5": "학점",
+            "생년" + "월일: 1990": "생년월일·병역",
+        }
+        for value, label in samples.items():
+            for rel in ("content/about.md", "data/career.yaml", "public/index.html"):
+                with self.subTest(label=label, rel=rel):
+                    self.assertIn(label, labels(rel, value))
+
+    def test_private_info_rules_skip_docs_and_allow_noreply(self):
+        self.assertEqual(labels("CLAUDE.md", "학" + "점, 병" + "역은 넣지 않는다"), [])
+        self.assertEqual(labels("public/index.html", "82426011+ch-park0422" + "@users.noreply.github.com"), [])
+        self.assertEqual(labels("data/career.yaml", "period: 2022.03 – 2024.08"), [])
+
     def test_clean_text_passes(self):
         self.assertEqual(labels("content/blog/a.md", "Supabase RLS로 본인 정보만 읽게 했습니다."), [])
 

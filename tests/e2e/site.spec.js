@@ -9,7 +9,21 @@ async function noHorizontalScroll(page) {
   expect(scroll, '가로 스크롤').toBeLessThanOrEqual(client);
 }
 
+// 스크롤 등장 효과가 끝난 상태에서 검사한다. 등장 전 요소는 반투명이라 대비가 낮게 잡힌다.
+async function revealAll(page) {
+  await page.evaluate(async () => {
+    for (let y = 0; y < document.documentElement.scrollHeight; y += innerHeight / 2) {
+      scrollTo(0, y);
+      await new Promise((r) => setTimeout(r, 60));
+    }
+    scrollTo(0, 0);
+  });
+  await page.waitForFunction(() => !document.querySelector('.reveal:not(.in)'));
+  await page.waitForTimeout(700);
+}
+
 async function noSeriousA11yIssues(page) {
+  await revealAll(page);
   const { violations } = await new AxeBuilder({ page }).analyze();
   const serious = violations
     .filter((v) => v.impact === 'serious' || v.impact === 'critical')
@@ -18,27 +32,56 @@ async function noSeriousA11yIssues(page) {
 }
 
 test.describe('홈', () => {
-  test('주요 섹션과 수치가 순서대로 있다', async ({ page }) => {
+  test('경력이 사이드 프로젝트보다 먼저 나온다', async ({ page }) => {
     await page.goto('/');
-    await expect(page).toHaveTitle(/박창현/);
-    await expect(page.locator('h1')).toHaveText(/AI Full-Stack\s*Developer/i);
-    const ids = await page.locator('main.home > [id], main.home > section[id]').evaluateAll((els) => els.map((e) => e.id));
-    expect(ids).toEqual(['top', 'skills', 'catches', 'prompts', 'works', 'about', 'contact']);
-    await expect(page.locator('.figures b').first()).toHaveText('778');
-    await expect(page.locator('.skill')).toHaveCount(6);
-    await expect(page.locator('.miss')).toHaveCount(9);
-    await expect(page.locator('.prompt')).toHaveCount(9);
-    await expect(page.locator('.tile')).toHaveCount(3);
+    await expect(page).toHaveTitle(/박창현 · QA Engineer & AI Builder/);
+    await expect(page.locator('h1')).toHaveText(/QA Engineer\s*& AI Builder/);
+    await expect(page.locator('.kicker')).toHaveText(/서비스 품질을 검증하고,\s*AI 시대의 품질 기준을 만듭니다/);
+    const ids = await page.locator('main.home > [id]').evaluateAll((els) => els.map((e) => e.id));
+    expect(ids).toEqual(['top', 'career', 'skills', 'works', 'about', 'contact']);
+    await expect(page.locator('.figures b')).toHaveText(['10년', 'PM+Eng', 'M.S.', 'CTFL']);
+    await expect(page.locator('.job h3')).toHaveText(['KT', '위메이드', '스트리미', '엔글']);
+    await expect(page.locator('.case')).toHaveCount(4);
+    await expect(page.locator('.edu > div')).toHaveCount(4);
+    await expect(page.locator('#skills .skill')).toHaveCount(4);
+    await expect(page.locator('#works .proj')).toHaveCount(3);
     await expect(page.locator('#works .rowlink')).toHaveCount(5);
+    await expect(page.locator('#ai-skills .skill')).toHaveCount(6);
     await noHorizontalScroll(page);
     await noSeriousA11yIssues(page);
   });
 
-  test('프로젝트 타일이 실제 주소로 이동한다', async ({ page }) => {
+  test('AI가 놓친 문제 4개와 프롬프트 3개만 먼저 보이고 나머지는 펼친다', async ({ page }) => {
     await page.goto('/');
-    await page.locator('.tile').first().click();
+    await expect(page.locator('#catches .miss:visible')).toHaveCount(4);
+    await expect(page.locator('#prompts .prompt:visible')).toHaveCount(3);
+    await page.getByText('사례 더 보기').click();
+    await expect(page.locator('#catches .miss:visible')).toHaveCount(9);
+    await page.getByText('기법 더 보기').click();
+    await expect(page.locator('#prompts .prompt:visible')).toHaveCount(9);
+  });
+
+  test('사이드 프로젝트 카드가 실제 주소로 이동한다', async ({ page }) => {
+    await page.goto('/');
+    await page.getByRole('link', { name: '사회자 퇴근 사례 보기' }).click();
     await expect(page).toHaveURL(/\/projects\/hostoff\/$/);
     await expect(page.locator('h1')).toHaveText('사회자 퇴근');
+  });
+
+  test('움직임 줄이기 설정에서는 등장 효과 없이 모두 보인다', async ({ page }) => {
+    await page.emulateMedia({ reducedMotion: 'reduce' });
+    await page.goto('/');
+    await expect(page.locator('.reveal')).toHaveCount(0);
+    const { violations } = await new AxeBuilder({ page }).analyze();
+    expect(violations.filter((v) => v.impact === 'serious' || v.impact === 'critical').map((v) => v.id)).toEqual([]);
+  });
+
+  test('공개하지 않기로 한 정보와 이전 문구가 없다', async ({ page }) => {
+    for (const path of ['/', '/about/', '/resume/']) {
+      await page.goto(path);
+      const text = await page.locator('body').innerText();
+      expect(text, path).not.toMatch(/풀스택 개발자|AI로 구현하고|2017~|학점|3\.54|@[a-z0-9-]+\.[a-z]{2,}/i);
+    }
   });
 });
 
