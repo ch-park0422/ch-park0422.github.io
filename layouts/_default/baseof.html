@@ -10,7 +10,7 @@
 {{ block "main" . }}{{ end }}
 </div>
 {{ partial "footer.html" . }}
-{{ if and (eq .Section "projects") .IsSection }}
+{{ if or .IsHome (and (eq .Section "projects") .IsSection) }}
 {{ with resources.Get "js/main.js" | minify | fingerprint }}<script src="{{ .RelPermalink }}" integrity="{{ .Data.Integrity }}" defer></script>{{ end }}
 {{ end }}
 </body>
