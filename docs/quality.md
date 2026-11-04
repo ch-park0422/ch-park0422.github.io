@@ -1,8 +1,7 @@
 # 품질 측정 결과
 
-측정일: 2026-11-04 (QA Engineer 개편, `redesign-qa-glass` 브랜치)
-대상: 로컬 운영 빌드 (`hugo --minify`, Hugo 0.169.0 extended)를 정적 서버로 띄운 상태
-병합 뒤 `https://ch-park0422.github.io`에서 다시 측정해 이 문서를 갱신한다.
+측정일: 2026-11-04 (QA Engineer 개편, PR #1)
+대상: 로컬 운영 빌드 (`hugo --minify`, Hugo 0.169.0 extended)를 정적 서버로 띄운 상태와, 병합 뒤 실제 주소 `https://ch-park0422.github.io`
 
 ## 요약
 
@@ -18,7 +17,7 @@
 | 빌드 결과의 비공개 개인 정보 | 미검출 | 미검출 | 예 |
 | 작성자 확인 표시 | 0건 | 0건 | 예 |
 
-Lighthouse 점수는 홈 / 프로젝트 상세(사회자 퇴근) / 글 상세 순서다.
+Lighthouse 점수는 로컬 빌드 기준이며 홈 / 프로젝트 상세(사회자 퇴근) / 글 상세 순서다. 실제 주소 결과는 아래 표에 있다.
 
 ## Lighthouse
 
@@ -29,6 +28,16 @@ Lighthouse 12.8.2, 모바일 기본 설정(시뮬레이션 throttling), Chrome h
 | `/` | 99 | 100 | 100 | 100 | 0.9 s | 1.8 s | 0.04 |
 | `/projects/hostoff/` | 100 | 100 | 100 | 100 | 0.8 s | 0.8 s | 0.001 |
 | `/blog/ai-catches/` | 100 | 100 | 100 | 100 | 0.8 s | 0.8 s | 0.003 |
+
+실제 주소 (병합 커밋 `c158ca5` 배포 뒤, 같은 설정):
+
+| 페이지 | Performance | Accessibility | Best Practices | SEO | FCP | LCP | CLS |
+|---|---|---|---|---|---|---|---|
+| `/` | 98 | 100 | 100 | 100 | 1.1 s | 2.3 s | 0.047 |
+| `/projects/hostoff/` | 100 | 100 | 100 | 100 | 0.9 s | 0.9 s | 0 |
+| `/blog/ai-catches/` | 100 | 100 | 100 | 100 | 1.1 s | 1.1 s | 0.003 |
+
+실제 주소에서 홈의 LCP가 로컬보다 0.5 s 늦다. LCP 요소는 프로필 사진이며, 아래 사진 크기 개선 여지와 같은 부분이다.
 
 리퀴드 글래스 디자인을 처음 적용했을 때 홈은 Performance 54(FCP 6.9 s, LCP 7.0 s), CLS 0.149, Accessibility 95였다.
 
@@ -67,7 +76,6 @@ Lighthouse 12.8.2, 모바일 기본 설정(시뮬레이션 throttling), Chrome h
 
 ## 확인하지 못한 것
 
-- 실제 GitHub Pages 주소에서의 점수 (병합 뒤 측정)
 - `backdrop-filter`를 지원하지 않는 실제 브라우저에서의 표시. 대체 규칙(`@supports not`)은 코드로만 확인했다.
 - Safari, Firefox 실기기 표시
 - 공유 미리보기의 실제 렌더링 (메신저, SNS 카드 검사기는 공개 주소가 필요)
