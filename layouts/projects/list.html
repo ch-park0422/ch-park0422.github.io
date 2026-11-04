@@ -7,7 +7,7 @@
 {{ range $tech, $n := $count }}{{ if ge $n 2 }}{{ $techs = $techs | append $tech }}{{ end }}{{ end }}
 <main id="main" class="listing">
   <div class="list-head">
-    <p class="eyebrow">PROJECTS</p>
+    <p class="eyebrow">... /Side-Projects ...</p>
     <h1>{{ .Title }}</h1>
     {{ with .Params.summary }}<p>{{ . }}</p>{{ end }}
   </div>

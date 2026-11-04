@@ -1,6 +1,6 @@
-{{- /* data/career.yaml의 교육 */ -}}
+{{- /* data/career.yaml의 학력과 자격 */ -}}
 <ul>
   {{ range hugo.Data.career.education }}
-  <li><b>{{ .school }}</b>{{ with .detail }} · {{ . }}{{ end }}{{ with .thesis }}<br>논문: {{ . }}{{ end }}</li>
+  <li><b>{{ .name }}</b> · {{ .detail }}{{ with .note }}<br>{{ . }}{{ end }}</li>
   {{ end }}
 </ul>

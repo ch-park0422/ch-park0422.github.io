@@ -1,0 +1,20 @@
+{{ $c := hugo.Data.career }}
+<section id="career">
+  <div class="head"><p class="path">... /Career ...</p><h2>경력과 학력</h2></div>
+  <div class="career">
+    {{ range $c.jobs }}
+    <div class="job"><p class="when">{{ .period }}</p><div><h3>{{ .company }}</h3><p class="pos">{{ .title }}</p><p>{{ .work }}</p></div></div>
+    {{ end }}
+  </div>
+  <div class="cases">
+    {{ range $c.cases }}
+    <div class="case"><h3>{{ .name }}</h3><p class="pos">{{ .role }}</p><p>{{ .work }}</p></div>
+    {{ end }}
+  </div>
+  <div class="edu">
+    <h3>EDUCATION &amp; CERTIFICATION</h3>
+    {{ range $c.education }}
+    <div><b>{{ .name }}</b><span>{{ .detail }}</span>{{ with .note }}<span>{{ . }}</span>{{ end }}</div>
+    {{ end }}
+  </div>
+</section>

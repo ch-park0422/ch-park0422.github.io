@@ -5,7 +5,7 @@
   {{ range (where site.RegularPages "Section" "projects").ByWeight }}
     <tr>
       <td><a href="{{ .RelPermalink }}">{{ .Title }}</a><br><span class="muted">{{ .Params.summary }}</span></td>
-      <td>{{ .Params.period }}</td>
+      <td class="nowrap">{{ .Params.period }}</td>
       <td>{{ with .Params.stackDetail }}{{ . }}{{ else }}{{ delimit .Params.stack ", " }}{{ end }}</td>
       <td>{{ .Params.scale }}</td>
     </tr>

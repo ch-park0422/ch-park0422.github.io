@@ -14,14 +14,13 @@ cd ch-park0422.github.io
 
 | 파일 | 저장 위치 |
 |---|---|
-| `build-log.html` | `reference/build-log.html` |
-| `design-reference.png` | `reference/design/design-reference.png` |
-| `profile.jpg` | `reference/profile.jpg` |
+| `build-log-career.html` | `reference/build-log-career.html` |
+| `profile-dark.jpg` | `reference/profile-dark.jpg` |
 
 4. 그 폴더에서 Claude Code를 열고 아래 문장을 입력합니다.
 
 ```text
-SPEC.md와 reference/build-log.html을 끝까지 읽어줘.
+SPEC.md와 reference/build-log-career.html을 끝까지 읽어줘.
 아직 코드는 쓰지 말고 §1의 G0 질문부터 한 번에 물어봐줘.
 답을 받으면 Phase 0부터 진행하고, 각 게이트에서 멈춰줘.
 ```
@@ -30,7 +29,7 @@ SPEC.md와 reference/build-log.html을 끝까지 읽어줘.
 
 ## 0. 만들 것
 
-`reference/build-log.html`의 포트폴리오를 GitHub Pages 블로그로 옮긴다.
+`reference/build-log-career.html`의 포트폴리오를 GitHub Pages 블로그로 옮긴다.
 
 - 저장소: `ch-park0422/ch-park0422.github.io`
 - 1차 주소: `https://ch-park0422.github.io`
@@ -39,14 +38,17 @@ SPEC.md와 reference/build-log.html을 끝까지 읽어줘.
 - 배포: `main` 브랜치에 push하면 GitHub Actions가 빌드해 GitHub Pages에 게시
 
 첫 방문자는 채용 담당자와 현업 개발자다.
-방문자가 3분 안에 "어떤 역량이 있고, AI 결과물을 어떻게 검증하며, 코드를 이해하고 있는가"를 판단할 수 있어야 한다.
-기간, 속도, 커밋 수보다 프로젝트의 품질과 역량을 앞세운다. 커밋 달력은 넣지 않는다.
+방문자가 3분 안에 "QA 경력과 역량이 어떠하고, AI 서비스의 품질을 어떻게 다루는가"를 판단할 수 있어야 한다.
+이 사이트의 중심은 10년 QA 경력이다. GitHub 프로젝트는 개인 사이드 프로젝트로 표기하고 경력보다 앞세우지 않는다. 커밋 달력은 넣지 않는다.
 
 사이트의 대표 제목은 다음과 같다.
 
-> AI로 구현하고, 검증으로 완성하는 풀스택 개발
+> QA Engineer & AI Builder
+>
+> 서비스 품질을 검증하고, AI 시대의 품질 기준을 만듭니다
 
-`reference/build-log.html`은 내용과 디자인의 구현 기준이다. 프로젝트 사실, 날짜, 수치는 이 파일에서 옮긴다.
+`reference/build-log-career.html`은 내용과 디자인의 구현 기준이다. 프로젝트 사실, 날짜, 수치는 이 파일에서 옮기고, 경력과 학력은 `data/career.yaml`로 관리한다.
+전화번호, 이메일, 주소는 G0 승인 없이 게시하지 않는다.
 
 ---
 
@@ -63,6 +65,8 @@ SPEC.md와 reference/build-log.html을 끝까지 읽어줘.
 | G2 | Phase 3 뒤 | 공개할 글과 사례 연구 초안 |
 | G3 | Phase 5 뒤 | 첫 공개 배포 |
 | G4 | Phase 6 뒤 | chpark.dev 연결 |
+
+확정된 사항: 직함 표기는 QA Engineer이고 PM 역량을 함께 보여준다. 회사와 프로젝트명은 공개한다. 연락 수단은 GitHub만 쓴다. 석사는 졸업했다.
 
 G0에서 물을 질문:
 
@@ -148,7 +152,7 @@ README.md
 
 | 경로 | 내용 |
 |---|---|
-| `/` | 히어로, 핵심 역량, AI가 놓친 문제, 프롬프트 기법, 프로젝트, 소개, 기술 목록, 연락처 순서 |
+| `/` | 히어로, 경력과 학력, QA 핵심 역량, 사이드 프로젝트, 소개, 기술 목록, 연락처 순서 |
 | `/projects/` | 프로젝트 목록과 기술 필터 |
 | `/projects/[slug]/` | 프로젝트 사례 연구 |
 | `/blog/` | 글 목록, 태그 |
@@ -207,14 +211,16 @@ metrics:
 
 ## 4. 디자인 기준
 
-- 구현 기준은 `reference/build-log.html`, 시각 참고는 `reference/design/design-reference.png`다.
-- 흰색, 검정, 빨강만 쓰는 포스터형 구성이다. 라이트 단일 테마이며 다크 모드는 넣지 않는다.
-- 영문 대제목과 큰 숫자는 Anton, 한글 제목과 본문은 IBM Plex Sans KR로 통일한다.
-- 코드와 로그는 IBM Plex Mono를 쓴다.
-- 프로필 사진은 `reference/profile.jpg`를 `static/images/profile.jpg`로 복사해 쓴다.
+- 구현 기준은 `reference/build-log-career.html`이다. 시각 방향은 https://www.behance.net/gallery/199132655/Portfolio-Full-stack-Developer 를 참고하되 그 작품의 이미지와 문구를 복제하지 않는다.
+- 다크 단일 테마의 리퀴드 글래스 UI다. 고정된 색상 배경 위에 `backdrop-filter`를 쓴 반투명 패널과 밝은 가장자리를 올린다.
+- `backdrop-filter` 미지원 브라우저에서는 불투명 패널로 대체하고, 글자 대비를 유지한다.
+- 엇갈린 대제목, 얇은 원형 선, 둥근 벤토 타일, 알약형 태그, `... /Projects ...` 형식의 섹션 표시를 쓴다.
+- 영문 제목, 숫자, 코드는 Fira Code, 한글 제목과 본문은 IBM Plex Sans KR로 통일한다.
+- 프로필 사진은 `reference/profile-dark.jpg`를 `static/images/profile.jpg`로 복사해 쓴다.
 - 가짜 로고, 임의의 숙련도 퍼센트, 근거 없는 수치는 쓰지 않는다.
 - 본문 너비는 약 65자, 모바일 최소 폭은 360px로 한다.
 - 키보드 포커스를 보이게 하고 `prefers-reduced-motion`을 지킨다.
+- 애니메이션은 배경의 느린 이동, 첫 화면 등장, 스크롤 시 가벼운 등장, 카드 호버만 쓴다. 내용은 애니메이션 없이도 읽을 수 있어야 한다.
 
 기준 페이지의 base64 이미지는 Hugo 사이트로 옮길 때 일반 이미지 파일로 바꾼다.
 비공개 프로젝트 캡처는 민감한 값이 없는 것만 쓴다. 캡처는 `🙋`로 요청한다.

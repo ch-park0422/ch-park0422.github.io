@@ -9,6 +9,7 @@
 - 비공개 저장소 주소와 로컬 주소
 - 올리면 안 되는 파일 (.env, 개인 키, reference/)
 - draft: true인 콘텐츠 (미승인 초안은 reference/에만 둔다)
+- 사이트에 싣지 않기로 한 개인 정보 (이메일, 전화번호, 학점, 생년월일, 병역)
 
 사용법:
     python3 scripts/check_content.py            # 저장소에 올라갈 파일 검사
@@ -59,6 +60,17 @@ PRIVATE_URLS = [
     ("로컬 주소", re.compile(r"https?://(?:localhost|127\.0\.0\.1|0\.0\.0\.0|\[::1\])(?::\d+)?", re.I)),
     ("로컬 파일 경로", re.compile(r"/Users/[A-Za-z0-9_.\-]+/")),
 ]
+
+# 공개 연락처는 GitHub만 쓴다. 사이트 소스와 빌드 결과에만 적용한다(규칙 문서는 이 단어를 설명한다).
+PRIVATE_INFO = [
+    ("이메일 주소", re.compile(r"[A-Za-z0-9._%+-]+@[A-Za-z0-9-]+(?:\.[A-Za-z0-9-]+)*\.[A-Za-z]{2,}")),
+    ("전화번호", re.compile(r"(?<!\d)(?:01[016789]|0[2-6]\d?)[-. ]?\d{3,4}[-. ]?\d{4}(?!\d)")),
+    ("학점", re.compile(r"학점|\b\d\.\d{1,2}\s*/\s*4\.[35]\b")),
+    ("생년월일·병역", re.compile(r"생년월일|병역|군필|전역")),
+]
+PRIVATE_INFO_SCOPE = ("content/", "data/", "layouts/", "static/", "assets/", "public/", "hugo.toml")
+# 공개해도 되는 주소: 커밋 작성자용 GitHub noreply
+EMAIL_ALLOWED = re.compile(r"@users\.noreply\.github\.com$")
 
 FORBIDDEN_FILES = [
     ("환경변수 파일", re.compile(r"(?:^|/)\.env(?:\..*)?$")),
@@ -118,6 +130,13 @@ def scan_text(rel, text):
             m = pattern.search(line)
             if m:
                 found.append((label, m))
+        if rel.startswith(PRIVATE_INFO_SCOPE):
+            for label, pattern in PRIVATE_INFO:
+                for m in pattern.finditer(line):
+                    if label == "이메일 주소" and EMAIL_ALLOWED.search(m.group(0)):
+                        continue
+                    found.append((label, m))
+                    break
         for label, m in found:
             problems.append((rel, lineno, label, mask(m.group(0))))
     return problems

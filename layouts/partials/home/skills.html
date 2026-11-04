@@ -1,15 +1,13 @@
 <section id="skills">
-  <div class="skills-wrap">
-    <div class="redblock"><h2>CORE<br>SKILLS</h2><p>프로젝트로 증명한<br>여섯 가지 역량</p></div>
-    <div class="skills">
-      {{ range hugo.Data.skills }}
-      <div class="skill">
-        <span class="ico">{{ partial "icon.html" .icon }}</span>
-        <h3>{{ .title }}</h3>
-        <ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul>
-        <p class="from">근거: {{ range $i, $slug := .from }}{{ if $i }} · {{ end }}{{ with site.GetPage (printf "/projects/%s" $slug) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ else }}{{ errorf "skills.yaml: 프로젝트 %q가 없습니다" $slug }}{{ end }}{{ end }}</p>
-      </div>
-      {{ end }}
+  <div class="head"><p class="path">... /Skills ...</p><h2>QA Engineering과 PM 역량</h2></div>
+  <div class="skills">
+    {{ range hugo.Data.skills.qa }}
+    <div class="skill">
+      <span class="ico">{{ partial "icon.html" .icon }}</span>
+      <h3>{{ .title }}</h3>
+      <ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul>
+      <p class="from">근거: {{ delimit .from " · " }}</p>
     </div>
+    {{ end }}
   </div>
 </section>

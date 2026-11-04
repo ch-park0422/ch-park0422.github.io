@@ -1,3 +1,18 @@
+// 홈의 스크롤 등장 효과. 움직임 줄이기 설정이면 쓰지 않고, 첫 화면 아래 요소에만 붙인다.
+(function () {
+  if (!window.IntersectionObserver || !matchMedia('(prefers-reduced-motion: no-preference)').matches) return;
+  var targets = document.querySelectorAll('.home > section:not(.finish), .home .sub, .home .projects > .proj');
+  if (!targets.length) return;
+  var io = new IntersectionObserver(function (entries) {
+    entries.forEach(function (e) {
+      if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); }
+    });
+  }, { rootMargin: '0px 0px -8% 0px' });
+  targets.forEach(function (el) {
+    if (el.getBoundingClientRect().top > innerHeight) { el.classList.add('reveal'); io.observe(el); }
+  });
+})();
+
 // 프로젝트 목록의 기술 필터. JS가 없으면 필터를 숨기고 전체 목록을 보여준다.
 (function () {
   var box = document.querySelector('[data-filter]');

@@ -14,6 +14,7 @@ module.exports = defineConfig({
   },
   projects: [
     { name: 'desktop', use: { viewport: { width: 1280, height: 900 } } },
+    { name: 'tablet', use: { viewport: { width: 768, height: 1024 } } },
     { name: 'mobile', use: { ...devices['Pixel 7'], viewport: { width: 360, height: 780 } } },
   ],
   webServer: {
@@ -21,5 +22,6 @@ module.exports = defineConfig({
     url: `http://127.0.0.1:${PORT}/`,
     reuseExistingServer: false,
     stdout: 'ignore',
+    stderr: 'ignore',
   },
 });

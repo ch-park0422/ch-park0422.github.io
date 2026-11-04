@@ -1,0 +1,30 @@
+# 홈 첫 화면과 소개의 문구. 기준: reference/build-log-career.html
+title: [QA Engineer, "& AI Builder"]
+kicker:
+  - 서비스 품질을 검증하고,
+  - AI 시대의 품질 기준을 만듭니다
+# *강조*는 굵게 표시된다.
+lead: >-
+  *10년* 동안 게임, 금융, 블록체인, AI 서비스의 품질을 맡아 왔습니다.
+  *QA Engineer*로 직접 검증하고 *QA PM*으로 품질 전략과 일정을 이끌며,
+  현재 KT에서 AI Platform 전환 서비스의 품질을 검증합니다.
+  개인 사이드 프로젝트에서는 *AI 에이전트*로 제품을 만들며 AI 결과물을 검증하는 방법을 실험합니다.
+
+# $ qa --focus 로그
+focus:
+  - [QA PM, 품질 전략 · 일정 · 리스크]
+  - [기능 QA, Web · App · 블록체인]
+  - [성능 QA, nGrinder · JMeter]
+  - [자동화, Python · Appium]
+
+about:
+  title:
+    - 결과물을 믿기 전에
+    - 기준부터 세웁니다
+  copy:
+    - 기획 충돌과 설계 오류는 일찍 찾을수록 비용이 작습니다. 그래서 프로젝트 초기부터 참여하고, 문제를 찾은 뒤에는 기획자, 개발자, PM과 함께 해결 방안을 찾습니다.
+    - AI 서비스도 같습니다. AI는 구현을 크게 넓혀 주지만 잘못된 전제까지 빠르게 만들기 때문에, 명세와 테스트, 실제 사용으로 결과를 확인합니다.
+    - 놓친 문제가 나오면 고치는 데서 끝내지 않습니다. 테스트와 프로젝트 규칙으로 남겨 같은 실수가 반복되지 않게 합니다.
+
+# 기능, 성능, 자동화 QA에서 사용한 도구
+tools: [Python, Appium, Selenium, nGrinder, LoadRunner, JMeter, Postman, JIRA]

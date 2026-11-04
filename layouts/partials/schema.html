@@ -5,7 +5,9 @@
   "name" site.Params.author
   "url" site.Home.Permalink
   "image" (site.Params.image | absURL)
-  "jobTitle" "AI 풀스택 개발자"
+  "jobTitle" site.Params.jobTitle
+  "description" site.Params.description
+  "worksFor" (dict "@type" "Organization" "name" site.Params.worksFor)
   "sameAs" (slice site.Params.github)
 -}}
 {{- if or .IsHome (eq .RelPermalink "/about/") }}

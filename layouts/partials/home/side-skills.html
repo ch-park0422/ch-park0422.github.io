@@ -1,0 +1,12 @@
+<div id="ai-skills" class="sub">
+  <div class="subhead"><h3>사이드 프로젝트로 넓힌 역량</h3></div>
+  <div class="skills side">
+    {{ range hugo.Data.skills.side }}
+    <div class="skill">
+      <h3>{{ .title }}</h3>
+      <ul>{{ range .items }}<li>{{ . }}</li>{{ end }}</ul>
+      <p class="from">근거: {{ range $i, $slug := .from }}{{ if $i }} · {{ end }}{{ with site.GetPage (printf "/projects/%s" $slug) }}<a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a>{{ else }}{{ errorf "skills.yaml: 프로젝트 %q가 없습니다" $slug }}{{ end }}{{ end }}</p>
+    </div>
+    {{ end }}
+  </div>
+</div>

@@ -13,7 +13,10 @@ repo: ""
 demo: ""
 weight: 3
 featured: true
-tile: { style: grid, lines: [잔흔], label: 에이전트 팀 · 게임 · 시뮬레이션 }
+# 홈의 사이드 프로젝트 카드. pitch의 *강조*는 굵게 표시된다.
+pills: [React, Vite, Zustand, Vitest]
+bento: [8개 직군 에이전트, G0–G5 게이트]
+pitch: "턴제 로그라이크입니다. *8개 직군 에이전트*와 승인 게이트로 기획부터 배포 패키지까지 진행했습니다."
 metrics:
   - label: 통과한 테스트
     value: "84"

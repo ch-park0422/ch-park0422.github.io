@@ -1,14 +1,23 @@
+{{- /* 대표 사이드 프로젝트 3개는 카드, 나머지는 목록으로 보여준다. */ -}}
 {{ $projects := (where site.RegularPages "Section" "projects").ByWeight }}
-<section id="works">
-  <div class="head"><h2>SELECTED WORK</h2></div>
-  <div class="tiles">
-    {{ range where $projects "Params.featured" true }}
-    <a class="tile {{ .Params.tile.style }}" href="{{ .RelPermalink }}"><h3>{{ delimit .Params.tile.lines "<br>" | safeHTML }}</h3><small>{{ .Params.tile.label }}</small></a>
-    {{ end }}
+<div class="projects">
+  {{ range where $projects "Params.featured" true }}
+  <div class="proj">
+    <div class="info">
+      <h3>{{ .Title }}</h3>
+      <div class="pills">{{ range .Params.pills }}<span>{{ . }}</span>{{ end }}</div>
+      <p>{{ .Params.pitch | markdownify }}</p>
+      <a class="circle" href="{{ .RelPermalink }}" aria-label="{{ .Title }} 사례 보기">{{ partial "icon.html" "out" }}</a>
+    </div>
+    <div class="bento">
+      {{ with index .Params.metrics 0 }}<div class="a"><b>{{ .value }}</b>tests passed</div>{{ end }}
+      {{ range $i, $t := .Params.bento }}<div{{ if eq $i 0 }} class="b"{{ end }}>{{ $t }}</div>{{ end }}
+    </div>
   </div>
-  <div class="rows">
-    {{ range where $projects "Params.featured" "!=" true }}
-    <a class="rowlink" href="{{ .RelPermalink }}"><b>{{ .Title }}</b><span>{{ .Params.card }}</span><i aria-hidden="true">↗</i></a>
-    {{ end }}
-  </div>
-</section>
+  {{ end }}
+</div>
+<div class="rows">
+  {{ range where $projects "Params.featured" "!=" true }}
+  <a class="rowlink" href="{{ .RelPermalink }}"><b>{{ .Title }}</b><span>{{ .Params.card }}</span><i aria-hidden="true">↗</i></a>
+  {{ end }}
+</div>
