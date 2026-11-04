@@ -10,7 +10,10 @@ repo: ""
 demo: ""
 weight: 2
 featured: true
-tile: { style: light, lines: [여정], label: 웹 · 데이터 모델링 · LLM 추천 }
+# 홈의 사이드 프로젝트 카드. pitch의 *강조*는 굵게 표시된다.
+pills: [Next.js, Prisma, Mapbox, Claude]
+bento: [계획과 지출 분리, 한국어·영어]
+pitch: "일정, 경비, 지도, 추천을 모은 다국어 서비스입니다. *여행 전과 여행 중*을 나눠 화면을 설계했습니다."
 metrics:
   - label: 통과한 테스트
     value: "299"

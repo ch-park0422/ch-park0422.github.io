@@ -13,7 +13,10 @@ repo: ""
 demo: ""
 weight: 1
 featured: true
-tile: { style: dark, lines: [사회자, 퇴근], label: 모바일 · 실시간 · 서버 권위 게임 엔진 }
+# 홈의 사이드 프로젝트 카드. pitch의 *강조*는 굵게 표시된다.
+pills: [Expo, React Native, Supabase, RLS]
+bento: [서버 권위 엔진, 게임 3종]
+pitch: "진행자 역할을 앱이 맡는 파티게임입니다. *서버 권위 엔진*으로 비밀 정보를 보호하고, *실기기 피드백*을 반영했습니다."
 metrics:
   - label: 통과한 테스트
     value: "395"

@@ -1,5 +1,5 @@
 {{- /* data/career.yaml의 경력. 최근 순. */ -}}
-<div class="fix career">
+<div class="fix jobs-list">
   {{ range hugo.Data.career.jobs }}
   <div><span><b>{{ .company }}</b> · {{ .title }}<br><span class="mono muted">{{ .period }}</span></span><span>{{ .work }}</span></div>
   {{ end }}

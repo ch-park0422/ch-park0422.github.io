@@ -1,23 +1,46 @@
-# 경력과 교육. 작성자가 2026-11-02에 알려 준 내용이다.
+# 경력, 대표 프로젝트, 학력과 자격. 기준: reference/build-log-career.html
+# 공개 연락처는 GitHub만 쓴다. 개인 연락처와 성적 같은 개인 정보는 넣지 않는다(check_content.py가 검사한다).
 jobs:
   - company: KT
     title: QAPM
     period: 2025.04 – 재직 중
     work: 마이케이티, 토큰팩토리 등 KT의 AI Platform 전환 서비스 품질 검증
-  - company: Wemade
-    title: QA Engineer
+  - company: 위메이드
+    title: QA Engineer · 품질 관리
     period: 2023.09 – 2025.03
-    work: 위퍼블릭(블록체인 기반 커뮤니티 앱) 서비스 품질 검증
-  - company: Streami
-    title: QA Engineer
+    work: 블록체인 커뮤니티 앱 WEPUBLIC의 출시와 운영 품질을 관리했습니다. JIRA 기반 QA 요청 체계를 만들어 개발팀과의 협업 프로세스를 세웠습니다.
+  - company: 스트리미
+    title: QA Engineer · 자동화 개선
     period: 2022.08 – 2023.09
-    work: 고팍스(가상화폐 거래소) 서비스 품질 검증 및 자동화 테스트 구축
-  - company: Ngle
-    title: QA Engineer
+    work: 가상자산 거래소 GOPAX의 USDC 마켓 오픈, 본인확인 KYC 업데이트를 담당했습니다. 수동으로 넣던 주문 데이터를 거래쌍과 수량만 입력하면 만드는 Python 모듈로 바꾸고, 보유 금액 초과, 최소 거래 금액 미만, 소수점 단위까지 커버리지를 넓혔습니다.
+  - company: 엔글
+    title: QA Leader · 성능 QA · 웹·플랫폼 QA
     period: 2017.01 – 2022.07
-    work: QA 전문 외주 업체에서 웹, 앱, 플랫폼, 게임 등 다양한 도메인의 품질 검증 및 성능 테스트
+    work: 모바일 게임, 웹, 플랫폼, 블록체인 서비스의 QA를 맡고 6~12명 팀을 이끌었습니다. 성능 테스트로 서버 최대 부하와 병목 구간을 찾아 고객사의 성능 목표에 맞는 튜닝 방향을 제안했습니다.
+
+# 경력 중 대표 프로젝트
+cases:
+  - name: 한국은행 CBDC 모의실험
+    role: 기능 QA Leader
+    work: 가상화폐 생성, 입출금, 폐기와 시중은행 서비스, 결제·송금 앱을 검증했습니다.
+  - name: Klaytn API Service
+    role: 성능 QA Leader
+    work: 주요 API 시나리오를 만들고 Python 스크립트와 nGrinder로 성능을 검증했습니다.
+  - name: 클립 NFT 거래소
+    role: 기능 QA Leader
+    work: 옥션, 구매, 판매 기능과 지갑의 자산 이동 내역을 EtoE 수준에서 검증했습니다.
+  - name: 위믹스 거래소
+    role: 기능 QA Engineer
+    work: 코인 거래 기능을 확인하고 Tx hash를 추적해 거래 내역의 신뢰성을 검증했습니다.
 
 education:
-  - school: 한양대학교 공학대학원
-    detail: 학점 3.54/4.5
-    thesis: Yolov8과 OCR을 결합한 소프트웨어 테스트 자동화
+  - name: 한양대학교 공학대학원
+    detail: 컴퓨터공학과 석사 · 2022.03 – 2024.08
+    note: "논문: YOLOv8과 OCR 기술을 결합한 소프트웨어 테스트 자동화 기법"
+  - name: 고려사이버대학교
+    detail: 소프트웨어공학과 학사(편입) · 2018.09 – 2020.02
+    note: "졸업 프로젝트: Selenium 웹 테스트 자동화 모듈"
+  - name: 동서울대학교
+    detail: 컴퓨터정보과 전문학사 · 2011.03 – 2013.02
+  - name: ISTQB CTFL
+    detail: 2017.02 취득

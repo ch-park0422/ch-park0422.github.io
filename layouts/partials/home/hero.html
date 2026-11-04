@@ -1,31 +1,28 @@
-{{ $tests := hugo.Data.figures.tests }}
+{{ $hero := hugo.Data.hero }}
 <div class="hero-wrap" id="top">
   <section class="hero">
-    <div>
-      <h1>AI Full-Stack<br>Developer<span>*</span></h1>
-      <p class="kicker">AI로 구현하고,<span>검증으로 완성하는 풀스택 개발</span></p>
-      <p class="lead">웹, 모바일, 게임, 데이터 자동화 제품을 설계부터 배포 준비까지 다룹니다. AI 에이전트에게 구현을 맡기고, 제품 판단과 품질 기준은 직접 세웁니다.</p>
-      <a class="go" href="#catches"><i>{{ partial "icon.html" "arrow" }}</i>AI가 놓친 문제 보기</a>
+    <h1><span><i aria-hidden="true">...</i>{{ index $hero.title 0 }}</span><span>{{ index $hero.title 1 }}<i aria-hidden="true">...</i></span></h1>
+    <div class="hero-grid">
+      <div class="intro">
+        <p class="kicker">{{ delimit $hero.kicker "<br>" | safeHTML }}</p>
+        <p class="lead">{{ $hero.lead | markdownify }}</p>
+        <div class="actions">
+          <a class="btn" href="#career">경력 보기</a>
+          <a class="circle" href="#career" aria-label="경력으로 이동">{{ partial "icon.html" "out" }}</a>
+          <a class="ghost" href="{{ site.Params.github }}">GitHub</a>
+          <a class="ghost" href="#works">사이드 프로젝트</a>
+        </div>
+      </div>
+      <div class="photo"><img alt="박창현 프로필 사진" src="{{ "images/profile.jpg" | relURL }}" width="900" height="1033" fetchpriority="high"></div>
+      <div class="log" aria-label="QA 전문 영역">
+        <span class="dim">$ qa --focus</span>
+        {{ range $hero.focus }}<div><span>{{ index . 0 }}</span><span>{{ index . 1 }}</span></div>{{ end }}
+      </div>
     </div>
-    <div class="panel">
-      <img alt="박창현 프로필 사진" src="{{ "images/profile.jpg" | relURL }}" width="900" height="1033" fetchpriority="high">
-      <p>VERIFY<br>BEFORE<br>TRUST</p>
-      <div class="seal" aria-hidden="true">
-        <svg viewBox="0 0 124 124"><defs><path id="ring" d="M62 62m-48 0a48 48 0 1 1 96 0a48 48 0 1 1-96 0"/></defs><text><textPath href="#ring">AI NATIVE • FULL-STACK • TESTED • VERIFIED •</textPath></text></svg>
-        <b>TESTED<span>BY ME</span></b>
-      </div>
-      {{ $date := time.AsTime $tests.measuredAt }}
-      <div class="log" aria-label="{{ $date.Format "2006년 1월 2일" }} 테스트 실행 결과">
-        <span class="dim">$ {{ $tests.command }}  # {{ $date.Format "2006-01-02" }}</span>
-        {{ range $tests.projects }}
-        <div><span>{{ .name }}</span><span>{{ .passed }} passed</span></div>
-        {{ end }}
-      </div>
+    <div class="figures">
+      {{ range hugo.Data.figures.headline }}
+      <div><b>{{ .value }}</b><span>{{ .label }}</span></div>
+      {{ end }}
     </div>
   </section>
-  <div class="figures">
-    {{ range hugo.Data.figures.headline }}
-    <div><b>{{ .value }}</b><span>{{ .label }}</span></div>
-    {{ end }}
-  </div>
 </div>

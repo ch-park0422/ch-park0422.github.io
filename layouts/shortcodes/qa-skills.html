@@ -1,0 +1,6 @@
+{{- /* data/skills.yaml의 QA 역량과 근거 */ -}}
+<ul class="skill-list">
+  {{ range hugo.Data.skills.qa }}
+  <li><b>{{ .title }}</b>: {{ delimit .items ", " }}. <span class="muted">근거: {{ delimit .from " · " }}</span></li>
+  {{ end }}
+</ul>

@@ -10,7 +10,7 @@
 {{ range .Params.metrics }}{{ if not .measuredAt }}{{ errorf "%s: 수치 %q에 measuredAt이 없습니다" $.File.Path .label }}{{ end }}{{ end }}
 <main id="main">
 <article>
-  <a class="back" href="{{ "/projects/" | relURL }}">← 프로젝트 목록</a>
+  <a class="back" href="{{ "/projects/" | relURL }}">← 사이드 프로젝트</a>
   <div class="post-head">
     <span class="mono muted">{{ .Params.period }}</span>
     <h1>{{ .Title }}</h1>

@@ -1,0 +1,6 @@
+{{- /* data/career.yaml의 경력 중 대표 프로젝트 */ -}}
+<ul>
+  {{ range hugo.Data.career.cases }}
+  <li><b>{{ .name }}</b> · {{ .role }}<br>{{ .work }}</li>
+  {{ end }}
+</ul>
